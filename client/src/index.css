@@ -1,0 +1,430 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-card-border: hsl(var(--card-border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+}
+
+:root {
+  --background: 40 33% 97%;
+  --foreground: 30 9% 17%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 30 9% 17%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 30 9% 17%;
+
+  --primary: 148 20% 38%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 36 24% 92%;
+  --secondary-foreground: 30 9% 17%;
+
+  --muted: 36 24% 92%;
+  --muted-foreground: 30 6% 42%;
+
+  --accent: 148 20% 38%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 17 49% 57%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 35 18% 82%;
+  --card-border: 35 18% 82%;
+  --input: 35 18% 74%;
+  --ring: 148 20% 38%;
+
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-serif: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --font-scribble: "Inter", system-ui, sans-serif;
+
+  --radius: 14px;
+}
+
+.dark {
+  --background: 40 33% 97%;
+  --foreground: 30 9% 17%;
+  --card: 0 0% 100%;
+  --card-foreground: 30 9% 17%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 30 9% 17%;
+  --primary: 148 20% 38%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 36 24% 92%;
+  --secondary-foreground: 30 9% 17%;
+  --muted: 36 24% 92%;
+  --muted-foreground: 30 6% 42%;
+  --accent: 148 20% 38%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 17 49% 57%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 35 18% 82%;
+  --card-border: 35 18% 82%;
+  --input: 35 18% 74%;
+  --ring: 148 20% 38%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: light;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .app-bg {
+    position: relative;
+    background: hsl(var(--background));
+    overflow: hidden;
+  }
+
+  .app-bg::before {
+    display: none;
+  }
+
+  .app-bg::after {
+    display: none;
+  }
+
+  .glass {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08);
+    backdrop-filter: none;
+  }
+
+  .glow {
+    box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08);
+  }
+
+  .grad-pill {
+    background: hsl(var(--primary));
+    box-shadow: 0 2px 6px rgba(46, 43, 39, 0.14);
+  }
+
+  .grad-pill:hover {
+    background: hsl(var(--primary) / 0.88);
+  }
+
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine::after {
+    display: none;
+  }
+
+  .page-in {
+    animation: pageIn 520ms cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+
+  @keyframes pageIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  .scribble {
+    background: hsl(var(--muted));
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  .btn-press {
+    transition: transform 0.15s cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
+  .card-rise {
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+  .card-rise:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08);
+  }
+
+  .glow-success {
+    box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08);
+  }
+
+  .glow-warning {
+    box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08);
+  }
+
+  .glow-danger {
+    box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08);
+  }
+
+  .glass-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08);
+    backdrop-filter: none;
+    border-radius: 1.5rem;
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+  .glass-card-hover:hover {
+    background: hsl(var(--secondary));
+    border-color: hsl(var(--border));
+    transform: translateY(-1px);
+  }
+
+  .pulse-glow {
+    animation: none;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08);
+    }
+    50% {
+      box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08);
+    }
+  }
+
+  .fade-up {
+    animation: fadeUp 0.5s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .min-tap {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .elevation-1 {
+    box-shadow: 0 1px 2px rgba(46, 43, 39, 0.08);
+  }
+
+  .elevation-2 {
+    box-shadow: 0 4px 8px rgba(46, 43, 39, 0.1);
+  }
+
+  .elevation-3 {
+    box-shadow: 0 8px 16px rgba(46, 43, 39, 0.12);
+  }
+
+  .breathing-circle {
+    animation: breathingCircle 7s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .breathing-circle__ring {
+    animation: breathingRing 7s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  @keyframes breathingCircle {
+    0%, 100% {
+      transform: scale(0.92);
+    }
+    45%, 55% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes breathingRing {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(0.92);
+    }
+    45%, 55% {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* Shared visual guardrails: keep legacy screens calm while they migrate. */
+[class*="gradient"] {
+  background-image: none !important;
+}
+
+[class*="blur-"] {
+  filter: none !important;
+}
+
+[class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+}
+
+[class*="bg-white/"] {
+  background-color: hsl(var(--card)) !important;
+}
+
+[class*="border-white/"] {
+  border-color: hsl(var(--border)) !important;
+}
+
+[class*="text-white/"],
+[class~="text-white"] {
+  color: hsl(var(--foreground)) !important;
+}
+
+[class*="text-cyan-"],
+[class*="text-blue-"],
+[class*="text-indigo-"],
+[class*="text-violet-"],
+[class*="text-purple-"],
+[class*="text-fuchsia-"],
+[class*="text-pink-"] {
+  color: hsl(var(--primary)) !important;
+}
+
+[class*="text-amber-"],
+[class*="text-rose-"],
+[class*="text-red-"] {
+  color: #c97b5c !important;
+}
+
+[class*="bg-cyan-"],
+[class*="bg-blue-"],
+[class*="bg-indigo-"],
+[class*="bg-violet-"],
+[class*="bg-purple-"],
+[class*="bg-fuchsia-"],
+[class*="bg-pink-"] {
+  background-color: hsl(var(--primary) / 0.12) !important;
+}
+
+[class*="bg-amber-"],
+[class*="bg-rose-"],
+[class*="bg-red-"] {
+  background-color: rgb(201 123 92 / 0.14) !important;
+}
+
+[class*="border-cyan-"],
+[class*="border-blue-"],
+[class*="border-indigo-"],
+[class*="border-violet-"],
+[class*="border-purple-"],
+[class*="border-fuchsia-"],
+[class*="border-pink-"] {
+  border-color: hsl(var(--primary) / 0.35) !important;
+}
+
+[class*="border-amber-"],
+[class*="border-rose-"],
+[class*="border-red-"] {
+  border-color: rgb(201 123 92 / 0.45) !important;
+}
+
+[class*="shadow-"] {
+  box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08) !important;
+}
+
+.glass,
+.glass-card,
+.glow,
+.glow-success,
+.glow-warning,
+.glow-danger,
+.pulse-glow {
+  background-image: none !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 2px 8px rgba(46, 43, 39, 0.08) !important;
+}
+
+/* Motion is reserved for short fades, slides, and purposeful loading states. */
+.animate-pulse,
+.animate-bounce,
+.floaty,
+.breathe-ring {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Panic mode immediately removes external previews from the app surface. */
+html[data-content-shield="active"] iframe,
+html[data-content-shield="active"] [data-external-preview] {
+  display: none !important;
+}

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <radialGradient id="orbitCoreSage" cx="24" cy="24" r="7" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8fbeab" />
+      <stop offset="55%" stop-color="#5B8A72" />
+      <stop offset="100%" stop-color="#3d6b58" />
+    </radialGradient>
+    <linearGradient id="sageRing" x1="4" y1="10" x2="44" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5B8A72" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#8fbeab" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#5B8A72" stop-opacity="0.9" />
+    </linearGradient>
+    <linearGradient id="terraRing" x1="44" y1="10" x2="4" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C97B5C" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#e0a88a" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#C97B5C" stop-opacity="0.85" />
+    </linearGradient>
+    <radialGradient id="starHighlight" cx="22" cy="22" r="3" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="48" height="48" rx="12" fill="#0b0f1a" />
+  <ellipse cx="24" cy="24" rx="19.5" ry="7" transform="rotate(-30 24 24)" stroke="url(#sageRing)" stroke-width="2.2" />
+  <ellipse cx="24" cy="24" rx="17" ry="5.5" transform="rotate(42 24 24)" stroke="url(#terraRing)" stroke-width="1.8" stroke-opacity="0.85" />
+  <circle cx="24" cy="24" r="6.5" fill="url(#orbitCoreSage)" />
+  <circle cx="22" cy="22" r="2.5" fill="url(#starHighlight)" />
+  <circle cx="37.5" cy="14.5" r="2.2" fill="#8fbeab" />
+  <circle cx="11.5" cy="33" r="1.8" fill="#C97B5C" />
+</svg>
