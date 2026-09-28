@@ -18,6 +18,8 @@ android-twa/*.idsig
 android-twa/build/
 android-twa/.gradle/
 android-twa/local.properties
+android-twa/app/build/
+android-twa/app/release/
 
 # Replit-specific files (not needed on GitHub)
 .replit
